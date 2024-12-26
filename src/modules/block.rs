@@ -10,7 +10,5 @@ pub struct Block {
 }
 
 impl Block {
-    pub fn say() {
-        println!("hi")
-    }
+    
 }
