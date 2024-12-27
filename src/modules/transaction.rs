@@ -40,7 +40,7 @@ impl Transaction {
     pub fn signature(&mut self, keypair: &Keypair) {
         let data = self.generate_data_string();
         let signature = keypair.sign(data.as_bytes());
-        self.signature = Some(base64::encode(signature.as_ref()));
+        self.signature = Some(encode(signature.as_ref()));
     }
 
     pub fn verify(&self) -> bool {
