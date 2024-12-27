@@ -1,6 +1,7 @@
 use ed25519_dalek::{ Keypair, PublicKey, Signature, Signer, Verifier };
 use base64::{ encode, decode };
 use rand_core::{ OsRng };
+use crate::modules::{{ transaction_pool }};
 
 #[derive(Debug, Clone)]
 pub struct Transaction {

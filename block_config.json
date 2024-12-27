@@ -1,5 +1,5 @@
 {
-    "max_transactions_per_pool": 10,
+    "max_transactions_per_pool": 8,
     "cache_enabled": true
 }
   
