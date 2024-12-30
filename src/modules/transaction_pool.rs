@@ -1,8 +1,8 @@
-use crate::modules::{{Transaction, Block}};
+use crate::modules::{ Transaction, Block, MerkleTree };
 
 pub struct TransactionPool {
     pub pending_transactions: Vec<Transaction>,
-    pub max_transactions_per_pool: usize
+    pub max_transactions_per_pool: usize,
 }
 
 impl TransactionPool {
@@ -30,6 +30,11 @@ impl TransactionPool {
     }
 
     pub fn commit_to_block(&mut self) {
+        let val = self.pending_transactions.clone();
+        // let mut tree = MerkleTree::new(val.clone());
+        println!("{:?}", &val);
+        
+
         // let block_create = Block::new();
         self.pending_transactions.clear();
     }
