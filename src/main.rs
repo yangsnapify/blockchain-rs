@@ -1,7 +1,8 @@
-use blockchain_rs::{ Transaction, Config, TransactionPool, NonceManager };
+use blockchain_rs::{ Transaction, Config, TransactionPool, NonceManager, Blockchain };
 use std::sync::{Arc, Mutex};
 
 fn main() {
+    let mut chain = Blockchain::new();
     let conf = &Config::load_config(); 
     let key_pair = Transaction::construct_key_pair();
     let nonce_manager = Arc::new(Mutex::new(NonceManager::new()));
@@ -27,13 +28,13 @@ fn main() {
     v8.signature(&key_pair);
     v9.signature(&key_pair);
 
-    transact_pool.update_pending_pool(v1);
-    transact_pool.update_pending_pool(v2);
-    transact_pool.update_pending_pool(v3);
-    transact_pool.update_pending_pool(v4);
-    transact_pool.update_pending_pool(v5);
-    transact_pool.update_pending_pool(v6);
-    transact_pool.update_pending_pool(v7);
-    transact_pool.update_pending_pool(v8);
-    transact_pool.update_pending_pool(v9);
+    transact_pool.update_pending_pool(v1, &mut chain);
+    transact_pool.update_pending_pool(v2, &mut chain);
+    transact_pool.update_pending_pool(v3, &mut chain);
+    transact_pool.update_pending_pool(v4, &mut chain);
+    transact_pool.update_pending_pool(v5, &mut chain);
+    transact_pool.update_pending_pool(v6, &mut chain);
+    transact_pool.update_pending_pool(v7, &mut chain);
+    transact_pool.update_pending_pool(v8, &mut chain);
+    transact_pool.update_pending_pool(v9, &mut chain);
 }

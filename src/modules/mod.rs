@@ -13,3 +13,4 @@ pub use config::*;
 pub use transaction_pool::*;
 pub use merkle_tree::*;
 pub use nonce_manager::*;
+pub use blockchain::*;

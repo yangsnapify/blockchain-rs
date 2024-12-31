@@ -73,4 +73,21 @@ impl Transaction {
             None => false,
         }
     }
+
+    pub fn hash(&self) -> String {
+        let data = format!(
+            "{}{}{}{}{}{}",
+            self.sender,
+            self.receiver,
+            self.amount,
+            self.nonce,
+            self.signature.clone().unwrap_or_default(),
+            self.transaction_id.clone().unwrap_or_default()
+        );
+
+        let mut hasher = Sha256::new();
+        hasher.update(data.as_bytes());
+        let result = hasher.finalize();
+        format!("{:x}", result)
+    }
 }

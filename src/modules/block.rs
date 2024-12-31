@@ -1,24 +1,24 @@
-use crate::modules::{Transaction, MerkleTree};
+use crate::modules::{Transaction, MerkleTree, Blockchain};
 
+#[derive(Clone)]
 pub struct Block {
     pub timestamp: u64,
-    pub transactions: Vec<Transaction>,
-    pub previous_hash: String,
-    pub hash: String,
+    pub tree: MerkleTree,
+    pub previous_hash: Option<String>,
 }
 
 impl Block {
-    pub fn new(transactions: Vec<Transaction>, previous_hash: String) {
-        let cloned_transactions = transactions.clone();
-        // let merkle_tree = MerkleTree::new(transactions);
-        // Block {
-        //     timestamp: std::time::SystemTime::now()
-        //         .duration_since(std::time::UNIX_EPOCH)
-        //         .unwrap()
-        //         .as_secs(),
-        //     transactions: cloned_transactions,
-        //     previous_hash,
-        //     hash: "".to_string(),
-        // }
+    pub fn new(tree: MerkleTree, chain: Blockchain) -> Block {
+        let _tree = tree.clone();
+
+        let b = Block {
+            timestamp: std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .unwrap()
+                .as_secs(),
+            tree: _tree,
+            previous_hash: chain.get_latest()
+        };
+        b
     }
 }
