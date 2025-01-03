@@ -31,8 +31,8 @@ impl TransactionPool {
 
     pub fn commit_to_block(&mut self, chain: &mut Blockchain) {
         let val = self.pending_transactions.clone();
-        let mut tree = MerkleTree::new(val.clone());
-        let mut chain_cloned = chain.clone();
+        let tree = MerkleTree::new(val.clone());
+        let chain_cloned = chain.clone();
     
         let block_create = Block::new(tree, chain_cloned);
         chain.commit_to_chain(block_create);

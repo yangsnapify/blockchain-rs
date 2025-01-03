@@ -1,6 +1,6 @@
-use crate::modules::{Transaction, MerkleTree, Blockchain};
+use crate::modules::{ MerkleTree, Blockchain};
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Block {
     pub timestamp: u64,
     pub tree: MerkleTree,

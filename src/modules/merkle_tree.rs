@@ -1,7 +1,7 @@
 use sha2::{Sha256, Digest};
 use crate::modules::{ Transaction };
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct MerkleTree {
     pub root: String,
     pub leaves: Vec<String>,
@@ -29,10 +29,9 @@ impl MerkleTree {
                     new_hashes.push(hashes[i].clone());
                 }
             }
-
+            println!("{:?}", &new_hashes);
             hashes = new_hashes;
         }
-
         hashes[0].clone()
     }
 

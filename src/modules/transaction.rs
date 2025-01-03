@@ -1,7 +1,7 @@
-use ed25519_dalek::{ Keypair, PublicKey, Signature, Signer, Verifier, Digest };
+use ed25519_dalek::{ Keypair, Signature, Signer, Digest };
 use base64::{ encode, decode };
 use rand_core::{ OsRng };
-use crate::modules::{ transaction_pool, NonceManager };
+use crate::modules::{ NonceManager };
 use serde::{ Serialize, Deserialize };
 use sha2::Sha256;
 use std::sync::{Arc, Mutex};
