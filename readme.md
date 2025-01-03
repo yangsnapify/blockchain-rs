@@ -72,8 +72,6 @@ Handles transaction ordering:
 - Sequential nonce assignment
 - Prevents double-spending
 
-## Usage Examples
-
 ### Creating Multiple Transactions
 
 ```rust
@@ -103,6 +101,37 @@ The blockchain can be configured through the `Config` struct:
 - Maximum transactions per pool
 - Block size limits
 
+## Configuration
+
+The blockchain is configured through a `block_config.json` file that should be placed in your project's root directory:
+
+```json
+{
+    "max_transactions_per_pool": 100,
+    "block_size_limit": 1024,
+}
+```
+
+### Configuration Parameters
+
+- `max_transactions_per_pool`: Maximum number of transactions allowed in the memory pool
+- `block_size_limit`: Maximum size of a block in bytes
+
+### Loading Configuration
+
+```rust
+use blockchain_rs::Config;
+
+fn main() {
+    // Load configuration from block_config.json
+    let config = Config::load_config();
+    
+    // Initialize blockchain with config
+    let mut blockchain = Blockchain::new();
+    let mut tx_pool = TransactionPool::new(config.max_transactions_per_pool);
+}
+```
+
 ## Best Practices
 
 1. Always verify transaction signatures before adding to pool
@@ -110,9 +139,6 @@ The blockchain can be configured through the `Config` struct:
 3. Implement proper synchronization for multi-threaded access
 4. Regularly backup blockchain state
 5. Monitor transaction pool size
-
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
 
